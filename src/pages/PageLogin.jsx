@@ -3,7 +3,7 @@ export const PageLogin = ({
   jobSources,
   userIsLoggedIn,
   currentUser,
-  currentUserIsInAccessGroup,
+  currentUserIsInAccessGroups,
   handleLogoutButton,
   handleLoginButton,
   username,
