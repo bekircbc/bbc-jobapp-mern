@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
 import { PageWelcome } from "./pages/PageWelcome";
-import { PageJobSources } from "./pages/PageJobSources";
-import { PageJobApplications } from "./pages/PageJobApplications";
 import { PageCv } from "./pages/PageCv";
 import { PageLogin } from "./pages/PageLogin";
 import { PageRegister } from "./pages/PageRegister";
