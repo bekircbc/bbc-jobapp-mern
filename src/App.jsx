@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
 import { PageWelcome } from "./pages/PageWelcome";
+import { PageJobSources } from "./pages/PageJobSources";
+import { PageJobApplications } from "./pages/PageJobApplications";
 import { PageCv } from "./pages/PageCv";
 import { PageLogin } from "./pages/PageLogin";
 import { PageRegister } from "./pages/PageRegister";
@@ -97,6 +99,14 @@ function App() {
   return (
     <div className="App">
       <h1>BBC Job Manager</h1>
+      {userIsLoggedIn() && (
+        <div className="loggedInInfo">
+          {currentUser.firstName} {currentUser.lastName}{" "}
+          <button className="logout" onClick={handleLogoutButton}>
+            Logout
+          </button>
+        </div>
+      )}
       <nav>
         <NavLink to="/welcome">Welcome</NavLink>
         <NavLink to="/job-sources">Job Sources</NavLink>
@@ -107,63 +117,37 @@ function App() {
       </nav>
       <Routes>
         <Route path="/welcome" element={<PageWelcome />} />
-        <Route path="/job-sources" element={<PageJobSources />} />
+        <Route
+          path="/job-sources"
+          element={
+            <PageJobSources
+              jobSources={jobSources}
+              handleLogoutButton={handleLogoutButton}
+            />
+          }
+        />
         <Route path="/job-applications" element={<PageJobApplications />} />
         <Route path="/cv" element={<PageCv />} />
-        <Route path="/login" element={<PageLogin />} />
+        <Route
+          path="/login"
+          element={
+            <PageLogin
+              message={message}
+              jobSources={jobSources}
+              userIsLoggedIn={userIsLoggedIn}
+              currentUser={currentUser}
+              currentUserIsInAccessGroup={currentUserIsInAccessGroup}
+              handleLogoutButton={handleLogoutButton}
+              handleLoginButton={handleLoginButton}
+              username={username}
+              password={password}
+              setUsername={setUsername}
+              setPassword={setPassword}
+            />
+          }
+        />
         <Route path="/register" element={<PageRegister />} />
       </Routes>
-      <div className="loggedInInfo">
-        {userIsLoggedIn() && (
-          <div>
-            Logged in: {currentUser.firstName} {currentUser.lastName}
-          </div>
-        )}
-      </div>
-      <div className="info">
-        {currentUserIsInAccessGroup("administrators") && (
-          <div>info for administrators</div>
-        )}
-        {currentUserIsInAccessGroup("jobSeekers") && (
-          <div>new job information for job seekers</div>
-        )}
-      </div>
-      {userIsLoggedIn() ? (
-        <>
-          <p>There are {jobSources.length} job sources:</p>
-          <ul>
-            {jobSources.map((jobSource, i) => {
-              return <li key={i}>{jobSource.name}</li>;
-            })}
-          </ul>
-          <button className="logout" onClick={handleLogoutButton}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <form className="login" onSubmit={handleLoginButton}>
-          <div className="row">
-            username:{" "}
-            <input
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-              type="text"
-            />
-          </div>
-          <div className="row">
-            password:{" "}
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              type="password"
-            />
-          </div>
-          <div className="row">
-            <button>Login</button>
-          </div>
-          <div className="row">{message}</div>
-        </form>
-      )}
     </div>
   );
 }
