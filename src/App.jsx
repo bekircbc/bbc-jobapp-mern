@@ -93,6 +93,9 @@ function App() {
       localStorage.setItem("token", data.token);
     } else {
       setMessage("bad login");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     }
   };
 
