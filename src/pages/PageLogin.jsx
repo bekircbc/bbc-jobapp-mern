@@ -35,7 +35,6 @@ export const PageLogin = ({
           <div className="row">
             <button>Login</button>
           </div>
-          <div className="row">{message}</div>
         </form>
       )}
     </>
