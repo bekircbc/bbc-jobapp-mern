@@ -1,0 +1,25 @@
+body {
+	background-color: #333;
+	color: #ccc;
+	padding: 2rem;
+	font-size: 1.4rem;
+
+	-webkit-animation: fadein 0.4s ease-in;
+	-moz-animation: fadein 0.4s ease-in;
+	-o-animation: fadein 0.4s ease-in;
+	-ms-animation: fadein 0.4s ease-in;
+	animation: fadein 0.4s ease-in;
+
+	h1 {
+		margin: 0;
+	}
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
