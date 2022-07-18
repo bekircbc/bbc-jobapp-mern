@@ -1,7 +1,7 @@
 export const PageCv = () => {
-	return (
-		<>
-			<p>This is the CV page.</p>
-		</>
-	);
+  return (
+    <>
+      <p>This is the CV page.</p>
+    </>
+  );
 };
