@@ -110,7 +110,7 @@ function App() {
   return (
     <div className="App">
       <>
-        <h1>EJ2 Job Manager</h1>
+        <h1>Job Manager</h1>
         {userIsLoggedIn() && (
           <div className="loggedInInfo">
             {currentUser.firstName} {currentUser.lastName}{" "}
